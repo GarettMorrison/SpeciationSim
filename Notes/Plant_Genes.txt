@@ -1,0 +1,6 @@
+R, G, B, Height, Foliage, Roots, misc
+
+R,G,B -> 0-255, cosmetic/detection
+Height -> 1-26, higher get more sun
+Foliage -> 1-26, get more food per sun
+Roots -> bool, adds to food drain, but prevents greater drain in arid land
