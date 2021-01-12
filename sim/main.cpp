@@ -12,8 +12,8 @@
 using namespace std;
 
 const int mapSize = 500;
-const int tickTotal = 5000;
-const int printTick = 3;
+const int tickTotal = 50000;
+const int printTick = 5;
 
 int main(){
 	cout << "Running sim!" << endl;

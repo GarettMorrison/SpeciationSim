@@ -70,7 +70,7 @@ void plant::killPlant(){
 	for(int i = 0; i < geneLength; i++){
 		genes[i] = 0;
 	}
-	
+
 	Rgb = 0;
 	rGb = 0;
 	rgB = 0;
@@ -173,7 +173,7 @@ void plant::breedPlant(plant &parentA, plant &parentB){ //Plants getting it ON
 			break;
 	}
 
-	int mutateCount = rand()%7-2;
+	int mutateCount = rand()%15-10;
 	for(int i = 0; i < mutateCount; i++){
 		int mutate = rand()%12;
 
@@ -246,8 +246,11 @@ void plant::doTick(int landType, int shadow){
 	food += foodGain;
 
 
-	if(landType == 1 && roots == false){
-		food -= 30;
+	if(landType == 1){
+		// food -= height;
+		if(roots == false){
+			food -= 30;
+		}
 	}
 
 	if(food <= 0){
