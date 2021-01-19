@@ -128,7 +128,7 @@ int main(){
 		}
 
 
-
+		if(tickCount % 2500 == 0){cout << liveCount << " plants at tick " << tickCount << endl;}
 
 
 

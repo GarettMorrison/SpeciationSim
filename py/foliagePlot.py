@@ -6,6 +6,10 @@ import csv
 
 tick = 0
 
+
+#get arguments
+fileOut = sys.argv[1]
+
 with open("data/plantFoliageData.txt","r") as inputFile:
 	readCSV = csv.reader(inputFile, delimiter = ' ', )
 	
@@ -36,6 +40,6 @@ for i in range(ticks):
 scale = m.ceil(1000/mapSize)
 output = output.resize((ticks*scale, mapSize*scale))
 print("foliagePlot output")
-output.save("data/foliagePlot.png")
+output.save(fileOut)
 
 # print(array)

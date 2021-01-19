@@ -63,6 +63,9 @@ def geneDiff(gene1, gene2, len): #Calculate total differences between genes
 
 
 #Starting actual code
+
+#get arguments
+geneCount = int(sys.argv[2])
 fileOut = sys.argv[1]
 
 
@@ -85,7 +88,7 @@ genes = len(array[0]) -1 #-1 to account for the space at the end of each row
 
 
 # for i in range(0, plants):
-# 	diff =geneDiff(array[0], array[i], 20)
+# 	diff =geneDiff(array[0], array[i], geneCount)
 # 	print(str(i) + ' ' + str(diff))
 
 
@@ -99,14 +102,14 @@ maximum = 0
 #Get max
 for i in range(plants):
 	for j in range(plants):
-		if geneDiff(array[i], array[j], 20) > maximum:
-			maximum = geneDiff(array[i], array[j], 20)
+		if geneDiff(array[i], array[j], geneCount) > maximum:
+			maximum = geneDiff(array[i], array[j], geneCount)
 
 
 #Make image
 for i in range(plants):
 	for j in range(plants):
-		blue = geneDiff(array[i], array[j], 20) * (510/maximum)
+		blue = geneDiff(array[i], array[j], geneCount) * (510/maximum)
 		green = 0
 		if blue > 255:
 			green = (blue-255)

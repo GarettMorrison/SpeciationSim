@@ -5,6 +5,9 @@ import csv
 
 tick = 0
 
+#get arguments
+fileOut = sys.argv[1]
+
 #Open and process file
 with open("data/plantGenes.txt","r") as inputFile:
 	readCSV = csv.reader(inputFile, delimiter = ' ', )
@@ -44,6 +47,6 @@ for i in range(plants):
 
 output = output.resize((plants*8, (genes-2)*8))
 print("plantDisplay output")
-output.save("data/plantDisplay.png")
+output.save(fileOut)
 
 # print(array)

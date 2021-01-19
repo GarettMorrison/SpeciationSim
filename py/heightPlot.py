@@ -5,6 +5,8 @@ import csv
 
 tick = 0
 
+fileOut = sys.argv[1]
+
 with open("data/plantHeightData.txt","r") as inputFile:
 	readCSV = csv.reader(inputFile, delimiter = ' ', )
 	
@@ -36,6 +38,6 @@ for i in range(ticks):
 scale = m.ceil(1000/mapSize)
 output = output.resize((ticks*scale, mapSize*scale))
 print("heightPlot output")
-output.save("data/heightPlot.png")
+output.save(fileOut)
 
 # print(array)
