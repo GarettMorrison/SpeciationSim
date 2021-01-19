@@ -42,7 +42,7 @@ for i in range(plants):
 		if j % 3 == 2:
 			pixels[i, j -2] = (0, 0, int(array[i][j]))
 
-output = output.resize((plants*4, (genes-2)*4))
+output = output.resize((plants*8, (genes-2)*8))
 print("plantDisplay output")
 output.save("data/plantDisplay.png")
 

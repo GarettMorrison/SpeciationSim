@@ -4,7 +4,7 @@
 echo Compiling!
 #
 #Compile main sim
-g++ -std=c++17 -Wall -Wextra -pedantic-errors -o mainSim.o sim/main.cpp sim/organism.h sim/organism.cpp #
+g++ -std=c++17 -Wall -Wextra -pedantic-errors -g -o mainSim.o sim/*.h sim/*.cpp #
 #Compile print function
 #
 mkdir -p data #fsadfa

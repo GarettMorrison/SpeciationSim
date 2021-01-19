@@ -1,5 +1,6 @@
 #include "organism.h"
 
+
 #include <iostream>
 #include <fstream>
 
@@ -123,12 +124,13 @@ int main(){
 			foliageData << endl;
 
 			if(tickCount >= 1000 && tickCount < 1000 + printTick){cout << liveCount << " plants at tick " << tickCount << endl;}
+			if(tickCount >= tickTotal - printTick){cout << liveCount << " plants at tick " << tickCount << endl;}
 		}
 
 
 	} //End main loop
 
-	for(int i = 0; i < mapSize; i++){cout << plants[i].foliage << ' ';}
+	// for(int i = 0; i < mapSize; i++){cout << plants[i].foliage << ' ';}
 
 	heightData.close();
 	foliageData.close();
