@@ -7,6 +7,32 @@
 
 using namespace std;
 
+int averageWrap(int in1, int in2, int max){
+	//Order nums
+	int small = in1;
+	int big = in2;
+	if(in1 > in2){
+		big = in1;
+		small = in2;
+	}
+
+	int val = 0;
+	if(big - small < small + max - big){
+		val = (big - small)/2 + small;
+	}
+	else{
+		val = (small + max - big)/2 + big;
+	}
+
+	if(val > max){
+		val -= max;
+	}
+
+	return(val);
+}
+
+
+
 void mutate(int* inGenes, int geneLength){	//Mutate inGenes
 	int mutateCount = rand()%15-10; //Set number of mutations
 	for(int i = 0; i < mutateCount; i++){

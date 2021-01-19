@@ -57,6 +57,15 @@ def geneDiff(gene1, gene2, len): #Calculate total differences between genes
 		diffSum += abs(diffWrap(gene1[i], gene2[i], 255))
 	return(diffSum)
 
+
+
+
+
+
+#Starting actual code
+fileOut = sys.argv[1]
+
+
 #Open and process file
 with open("data/plantGenes.txt","r") as inputFile:
 	readCSV = csv.reader(inputFile, delimiter = ' ', )
@@ -107,6 +116,6 @@ for i in range(plants):
 
 output = output.resize((plants*4, plants*4))
 print("geneDiff output")
-output.save("data/geneDiff.png")
+output.save(fileOut)
 
 # # print(array)

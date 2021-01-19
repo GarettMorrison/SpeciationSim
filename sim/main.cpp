@@ -102,11 +102,11 @@ int main(){
 
 
 
-
+		int liveCount = 0;
 		if(tickCount % printTick == 0){	//Record every printTickth state
 			// int heightSum = 0;
 			// int foliageSum = 0;
-			int liveCount = 0;
+			liveCount = 0;
 			for(int i = 0; i < mapSize; i++){
 
 				heightData << plants[i].height; //Print heights
@@ -123,10 +123,31 @@ int main(){
 			heightData << endl;
 			foliageData << endl;
 
-			if(tickCount >= 1000 && tickCount < 1000 + printTick){cout << liveCount << " plants at tick " << tickCount << endl;}
-			if(tickCount >= tickTotal - printTick){cout << liveCount << " plants at tick " << tickCount << endl;}
+			// if(tickCount >= 1000 && tickCount < 1000 + printTick){cout << liveCount << " plants at tick " << tickCount << endl;}
+			// if(tickCount >= tickTotal - printTick){cout << liveCount << " plants at tick " << tickCount << endl;}
 		}
 
+
+
+
+
+
+		//Code to print diversity chart every tick
+		// if(tickCount % 1000 == 0){ //Output genes and make image
+		// 	cout << liveCount << " plants at tick " << tickCount << endl;
+
+		// 	ofstream oPlant("data/plantGenes.txt", ios::out);//init output file for genes
+		// 	for(int i = 0; i < mapSize; i++){
+		// 		for(int j = 0; j < 20; j++){
+		// 			oPlant << plants[i].genes[j] << ' ';
+		// 		}
+		// 		oPlant << endl;
+		// 	}
+		// 	oPlant.close();
+
+		// 	string runString = "python3 py/geneticAnalysisGif.py data/geneGif/" + to_string((int)tickCount/1000) + "_geneDiff.png";
+		// 	system(runString.c_str());
+		// }
 
 	} //End main loop
 

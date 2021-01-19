@@ -11,31 +11,6 @@ using namespace std;
 const int geneLength = 20;
 
 
-int averageWrap(int in1, int in2, int max){
-	//Order nums
-	int small = in1;
-	int big = in2;
-	if(in1 > in2){
-		big = in1;
-		small = in2;
-	}
-
-	int val = 0;
-	if(big - small < small + max - big){
-		val = (big - small)/2 + small;
-	}
-	else{
-		val = (small + max - big)/2 + big;
-	}
-
-	if(val > max){
-		val -= max;
-	}
-
-	return(val);
-}
-
-
 plant::plant(){
 	killPlant();
 
@@ -57,6 +32,10 @@ void plant::growPlant(){
 	Rgb = genes[0];
 	rGb = genes[1];
 	rgB = genes[2];
+
+	// int i = 3
+	// while(i < geneLength)
+
 	height = genes[3]/10 + 1;
 	foliage = genes[4]/10 + 4;
 	roots = (genes[5]>127);
