@@ -16,6 +16,7 @@ with open("data/plantFoliageData.txt","r") as inputFile:
 	array = []
 
 	for i in readCSV:
+		i.remove('')
 		array.append(i)
 
 ticks = len(array)

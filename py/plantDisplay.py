@@ -15,6 +15,7 @@ with open("data/plantGenes.txt","r") as inputFile:
 	array = []
 
 	for i in readCSV:
+		i.remove('')
 		array.append(i)
 
 plants = len(array)

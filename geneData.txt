@@ -1,0 +1,32 @@
+Exactly 0 - End
+
+
+0 - Set height		1-26
+1 - Set foliage		4-29
+2 - Set roots		bool
+3 - Set splitfood	0-511
+
+4 - Add mateSelector
+	Takes next 2 genes
+	[1]%5+1 weight
+		sets how big of an impact selector has on mate
+	[1] /= 10 check
+		0 - exact match
+		1 - shortest diff wrap
+		2 - shortest diff linear
+		3 - longest diff wrap
+		4 - longest diff linear
+		5 - within 2
+		6 - within 5
+		7 - within 10
+		8 - within 50
+		9 - within 100
+	[2] %6 trait
+		0 - Rgb
+		1 - rGb
+		2 - rgB
+		3 - height
+		4 - foliage
+		5 - roots
+	[2] target
+		sets val to target, 0-255

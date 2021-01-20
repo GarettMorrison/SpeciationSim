@@ -31,12 +31,31 @@ int averageWrap(int in1, int in2, int max){
 	return(val);
 }
 
+int diffWrap(int in1, int in2, int max){
+	//Order nums
+	int small = in1;
+	int big = in2;
+	if(in1 > in2){
+		big = in1;
+		small = in2;
+	}
+
+	int val = 0;
+	if(big - small < small + max - big){
+		val = big - small;
+	}
+	else{
+		val = small + max - big;
+	}
+
+	return(val);
+}
 
 
 void mutate(int* inGenes, int geneLength){	//Mutate inGenes
-	int mutateCount = rand()%15-10; //Set number of mutations
+	int mutateCount = rand()%50-40; //Set number of mutations
 	for(int i = 0; i < mutateCount; i++){
-		int mutationSel = rand()%12;
+		int mutationSel = rand()%10;
 
 		if(mutationSel < 3){	//Add random value
 			int select = rand()%geneLength;
@@ -50,14 +69,14 @@ void mutate(int* inGenes, int geneLength){	//Mutate inGenes
 			if(inGenes[select] > 255){inGenes[select] -= 255;}
 			if(inGenes[select] < 0){inGenes[select] += 255;}
 		}
-		else if(mutationSel < 9){	//Shift random value by up to 80
+		else if(mutationSel < 10){	//Shift random value by up to 80
 			int select = rand()%geneLength;
 			int valSet = rand()%161;
 			inGenes[select] = valSet += valSet - 25;
 			if(inGenes[select] > 255){inGenes[select] -= 255;}
 			if(inGenes[select] < 0){inGenes[select] += 255;}
 		}
-		if(mutationSel == 10){ //Deletion mutation, shift from right
+		if(mutationSel < 11){ //Deletion mutation, shift from right
 			int select = rand()%geneLength;
 			int valSet = rand()%256;
 
@@ -66,7 +85,7 @@ void mutate(int* inGenes, int geneLength){	//Mutate inGenes
 			}
 			inGenes[geneLength-1] = valSet;	
 		}
-		if(mutationSel == 11){ //Deletion mutation, shift from left
+		if(mutationSel < 12){ //Deletion mutation, shift from left
 			int select = rand()%geneLength;
 			int valSet = rand()%256;
 

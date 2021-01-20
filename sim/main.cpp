@@ -1,4 +1,4 @@
-#include "organism.h"
+#include "shared/organism.h"
 
 
 #include <iostream>
@@ -13,7 +13,7 @@
 using namespace std;
 
 const int mapSize = 500;
-const int tickTotal = 50000;
+const int tickTotal = 80000;
 const int printTick = 5;
 
 int main(){
@@ -24,6 +24,7 @@ int main(){
 
 	ofstream heightData("data/plantHeightData.txt", ios::out);//init output file
 	ofstream foliageData("data/plantFoliageData.txt", ios::out);//init output file
+	ofstream colorData("data/plantColorData.txt", ios::out);//init output file
 
 
 
@@ -61,15 +62,23 @@ int main(){
 		//Breed plants
 		for(int i = 0; i < mapSize; i++){ 
 			if(!plants[i].procreate || plants[i].dead){continue;}//Test for reproduction
-			int pos = rand()%21; //Get random positions
-			pos += i -10;
+			int pos = rand()%(1 + 2*(15)); //Get random positions
+			pos += i -(15);
 			if(pos < 0 || pos >= mapSize || !plants[pos].dead){continue;} //Keep new plant in bounds and dont overwrite living plant
 
+			int bestMatch = -1;
+			float bestMatchWeight = -1;
 			for(int j = 0; j < mapSize; j++){
 				if(j == i || !plants[j].procreate || plants[j].dead){continue;} //No inbreeding
-				plants[pos].breedPlant(plants[i], plants[j]);
-				break;
+				float matchWeight = plants[i].considerMatch(plants[j]);
+
+				if(matchWeight > bestMatchWeight){ //If this is next best match
+					bestMatch = j;
+					bestMatchWeight = matchWeight;
+				}
 			}
+			//Actually breed with best plant
+			plants[pos].breedPlant(plants[i], plants[bestMatch]);
 
 		}
 
@@ -109,12 +118,9 @@ int main(){
 			liveCount = 0;
 			for(int i = 0; i < mapSize; i++){
 
-				heightData << plants[i].height; //Print heights
-				foliageData << plants[i].foliage;
-				if(i != mapSize-1){
-					heightData << ' ';
-					foliageData << ' ';
-				}
+				heightData << plants[i].height << ' '; //Print heights
+				foliageData << plants[i].foliage << ' ';
+				colorData << plants[i].Rgb << ' ' << plants[i].rGb << ' ' << plants[i].rgB << ' ';
 				
 				// heightSum += plants[i].height;
 				// foliageSum += plants[i].foliage;
@@ -122,6 +128,7 @@ int main(){
 			}
 			heightData << endl;
 			foliageData << endl;
+			colorData << endl;
 
 			// if(tickCount >= 1000 && tickCount < 1000 + printTick){cout << liveCount << " plants at tick " << tickCount << endl;}
 			// if(tickCount >= tickTotal - printTick){cout << liveCount << " plants at tick " << tickCount << endl;}
@@ -131,10 +138,9 @@ int main(){
 		if(tickCount % 2500 == 0){cout << liveCount << " plants at tick " << tickCount << endl;}
 
 
-
-		//Code to print diversity chart every tick
+		/////////Code to print diversity chart every tick
 		// if(tickCount % 1000 == 0){ //Output genes and make image
-		// 	cout << liveCount << " plants at tick " << tickCount << endl;
+		// 	// cout << liveCount << " plants at tick " << tickCount << endl;
 
 		// 	ofstream oPlant("data/plantGenes.txt", ios::out);//init output file for genes
 		// 	for(int i = 0; i < mapSize; i++){
@@ -144,8 +150,7 @@ int main(){
 		// 		oPlant << endl;
 		// 	}
 		// 	oPlant.close();
-
-		// 	string runString = "python3 py/geneticAnalysisGif.py data/geneGif/" + to_string((int)tickCount/1000) + "_geneDiff.png";
+		// 	string runString = "python3 py/geneticAnalysis.py data/geneGif/" + to_string((int)tickCount/1000) + "_geneDiff.png 20";
 		// 	system(runString.c_str());
 		// }
 
@@ -155,6 +160,7 @@ int main(){
 
 	heightData.close();
 	foliageData.close();
+	colorData.close();
 
 	
 	ofstream oPlant("data/plantGenes.txt", ios::out);//init output file for genes

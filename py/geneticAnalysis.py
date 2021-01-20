@@ -82,7 +82,7 @@ with open("data/plantGenes.txt","r") as inputFile:
 			array.append(arrInsert)
 
 plants = len(array)
-genes = len(array[0]) -1 #-1 to account for the space at the end of each row
+genes = len(array[0]) #-1 to account for the space at the end of each row
 
 #array is array of all plant genes, [plantID][gene]
 
